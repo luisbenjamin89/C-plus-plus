@@ -32,7 +32,7 @@ void mostrar(vector<int> identificacion, vector<notas> &datos, vector<string> no
     {
         grupo = "GInf" + to_string(random_n());
 
-        datos[i].nombre_a = nombres[i] ;
+        datos[i].nombre_a = nombres[i];
         datos[i].NumAlumno = identificacion[i];
         datos[i].Grupo = grupo;
         datos[i].teoría = random_n();
@@ -73,7 +73,7 @@ void modificar(vector<notas> &datos)
         cout << datos[alumno - 1].teoría << endl;
         cout << "Introduzca la nueva nota:";
         cin >> nota;
-        datos[alumno- 1].teoría = nota;
+        datos[alumno - 1].teoría = nota;
         cout << "**********************************************\n";
         cout << "**************La Nota fue actulizada**********\n";
         cout << "**********************************************\n";
@@ -85,7 +85,7 @@ void modificar(vector<notas> &datos)
         cout << datos[alumno - 1].problemas << endl;
         cout << "Introduzca la nueva nota:";
         cin >> nota;
-        datos[alumno- 1].problemas = nota;
+        datos[alumno - 1].problemas = nota;
         cout << "**********************************************\n";
         cout << "**************La Nota fue actulizada**********\n";
         cout << "**********************************************\n";
@@ -97,7 +97,7 @@ void modificar(vector<notas> &datos)
         cout << datos[alumno - 1].prácticas << endl;
         cout << "Introduzca la nueva nota:";
         cin >> nota;
-        datos[alumno- 1].prácticas = nota;
+        datos[alumno - 1].prácticas = nota;
         cout << "**********************************************\n";
         cout << "**************La Nota fue actulizada**********\n";
         cout << "**********************************************\n";
@@ -155,15 +155,33 @@ void menuprincipal(vector<int> &identificacion, vector<notas> datos, vector<stri
         menuprincipal(identificacion, datos, nombres);
         break;
     case 3:
+        system("clear");
         modificar(datos);
         menuprincipal(identificacion, datos, nombres);
         break;
-    case 4:;
+    case 4:
+        system("clear");
+        sudmenu(datos);
 
     default:
         menuprincipal(identificacion, datos, nombres);
         break;
     }
+}
+
+void sudmenu(vector<notas> datos)
+{
+
+    cout << "\n";
+    cout << "     SUBMENU DE ESTADISTICAS\n";
+    cout << "********************************\n";
+    cout << "********************************\n";
+
+    cout << "1.- Alumnos con mejores notas.\n";
+    cout << "2.- Ver nota media de un alumno.\n";
+    cout << "3.- Ver los alumnos con alguna parte suspensa.\n";
+    cout << "4.- Ver el numero de alumnos con suspensos por cada grupo.\n";
+    cout << "\n";
 }
 
 int main()
