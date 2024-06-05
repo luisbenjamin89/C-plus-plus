@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+using namespace std;
 
 int random_n()
 {
@@ -104,6 +105,116 @@ void modificar(vector<notas> &datos)
         cout << "\n";
     }
 }
+void merjornota(vector<notas> datos)
+{
+    int notateoria = 0;
+    int notaproblemas = 0;
+    int notapracticas = 0;
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (datos[i].teoría > notateoria)
+        {
+
+            notateoria = datos[i].teoría;
+        }
+        if (datos[i].problemas > notaproblemas)
+        {
+            notaproblemas = datos[i].problemas;
+        }
+
+        if (datos[i].prácticas > notapracticas)
+        {
+            notapracticas = datos[i].prácticas;
+        }
+    }
+    cout << "\n";
+    cout << "La mejor nota de teoria es: " << notateoria << endl;
+    cout << "\n";
+    for (int i = 0; i < 10; i++)
+    {
+        if (datos[i].teoría == notateoria)
+        {
+
+            cout << "-----------------------------------------\n";
+            cout << "*******" << datos[i].nombre_a << "*******\n";
+            cout << "-----------------------------------------\n";
+        }
+    }
+    cout << "\n";
+    cout << "La mejor nota de problemas es: " << notaproblemas << endl;
+    cout << "\n";
+    for (int i = 0; i < 10; i++)
+    {
+        if (datos[i].problemas == notaproblemas)
+        {
+            cout << "-----------------------------------------\n";
+            cout << "*******" << datos[i].nombre_a << "*******\n";
+            cout << "-----------------------------------------\n";
+        }
+    }
+    cout << "\n";
+    cout << "La mejor nota de practicas es: " << notapracticas << endl;
+    cout << "\n";
+    for (int i = 0; i < 10; i++)
+    {
+        if (datos[i].prácticas == notapracticas)
+        {
+            cout << "-----------------------------------------\n";
+            cout << "*******" << datos[i].nombre_a << "*******\n";
+            cout << "-----------------------------------------\n";
+        }
+    }
+}
+void submenu(vector<int> identificacion, vector<notas> datos, vector<string> nombres)
+{
+    int menu;
+    void menuprincipal(vector<int> & identificacion, vector<notas> datos, vector<string> nombres);
+
+    cout << "\n";
+    cout << "     SUBMENU DE ESTADISTICAS\n";
+    cout << "********************************\n";
+    cout << "********************************\n";
+
+    cout << "1.- Alumnos con mejores notas.\n";
+    cout << "2.- Ver nota media de un alumno.\n";
+    cout << "3.- Ver los alumnos con alguna parte suspensa.\n";
+    cout << "4.- Ver el numero de alumnos con suspensos por cada grupo.\n";
+    cout << "\n";
+    cout << "Seleccione una opcion (Pulsar 0 para volver al menu princial):\n";
+    cin >> menu;
+
+    switch (menu)
+    {
+    case 0:
+        system("clear");
+        menuprincipal(identificacion, datos, nombres);
+        break;
+
+    case 1:
+        system("clear");
+        merjornota(datos);
+        cout << "\n";
+        cout << "**********************************************\n";
+        cout << "**************Fin De Resultados***************\n";
+        cout << "**********************************************\n";
+        cout << "\n";
+        submenu(identificacion, datos, nombres);
+        break;
+    case 2:
+
+        break;
+    case 3:
+
+        break;
+    case 4:
+
+        break;
+    default:
+        submenu(identificacion, datos, nombres);
+        break;
+    }
+}
 
 void menuprincipal(vector<int> &identificacion, vector<notas> datos, vector<string> nombres)
 {
@@ -161,31 +272,17 @@ void menuprincipal(vector<int> &identificacion, vector<notas> datos, vector<stri
         break;
     case 4:
         system("clear");
-        sudmenu(datos);
-
+        submenu(identificacion, datos, nombres);
+        break;
     default:
         menuprincipal(identificacion, datos, nombres);
         break;
     }
 }
 
-void sudmenu(vector<notas> datos)
-{
-
-    cout << "\n";
-    cout << "     SUBMENU DE ESTADISTICAS\n";
-    cout << "********************************\n";
-    cout << "********************************\n";
-
-    cout << "1.- Alumnos con mejores notas.\n";
-    cout << "2.- Ver nota media de un alumno.\n";
-    cout << "3.- Ver los alumnos con alguna parte suspensa.\n";
-    cout << "4.- Ver el numero de alumnos con suspensos por cada grupo.\n";
-    cout << "\n";
-}
-
 int main()
 {
+
     srand(time(0));
 
     vector<notas> datos(10);
